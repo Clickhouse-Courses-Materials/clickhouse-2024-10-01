@@ -1,7 +1,6 @@
 ## 1. Install yc CLI
 ```shell
-sudo curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | \
-sudo bash -s -- -a
+curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash -s -- -a
 ```
 Check:
 ```shell
