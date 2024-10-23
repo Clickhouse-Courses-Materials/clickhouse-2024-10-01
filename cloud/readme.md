@@ -1,7 +1,7 @@
 ## 1. Install yc CLI
 ```shell
-curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | \
-bash -s -- -a
+sudo curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | \
+sudo bash -s -- -a
 ```
 Check:
 ```shell
@@ -17,10 +17,10 @@ export TERRAFORM_VERSION=1.4.6
 Install:
 
 ```shell
-curl -sL https://hashicorp-releases.yandexcloud.net/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform.zip \
-&& unzip terraform.zip \
-&& install -o root -g root -m 0755 terraform /usr/local/bin/terraform \
-&& rm -rf terraform terraform.zip
+sudo curl -sL https://hashicorp-releases.yandexcloud.net/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform.zip \
+&& sudo unzip terraform.zip \
+&& sudo install -o root -g root -m 0755 terraform /usr/local/bin/terraform \
+&& sudo rm -rf terraform terraform.zip
 ```
 Check:
 ```shell
