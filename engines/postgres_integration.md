@@ -334,3 +334,78 @@ insert into Manager(ManagerID, PersonID, DepartmentID) values(3, 35, 2);
 Структура итогового хранилища:
 
 ![DB schema](company_dwh.png)
+
+```sql
+
+create database company_dwh;
+use company_dwh;
+
+create table src_department (
+	departmentid Int32,
+	name String,
+	description String
+) engine = PostgreSQL('localhost:5432', 'postgres', 'department', 'postgres', 'changeme', 'public');
+
+create table src_manager(
+managerid Int32,
+personid Int32,
+departmentid Int32
+) engine = PostgreSQL('localhost:5432', 'postgres', 'manager', 'postgres', 'changeme', 'public');
+
+select * from src_department;
+SELECT * from src_manager;
+
+create table stg_department engine = MergeTree() ORDER BY department_id as 
+select departmentid as department_id, name, description, 'hr_db' as "source" from src_department;
+
+select * from stg_department;
+
+create table stg_manager(
+	manager_id Int32,
+	person_id Int32,
+	department_id Int32,
+	source String
+) engine = MergeTree() order by manager_id;
+
+insert into stg_manager  select departmentid as department_id, managerid as manager_id, personid as person_id, 'hr_db' as "source" from src_manager;
+
+select * from stg_manager;
+
+
+--------------------------------
+-- DDS
+--------------------------------
+
+create table f_work(
+	person_id Int32,
+	work_info_id Int32,
+	department_id Int32
+)
+
+create table work_info (
+	person_id Int32,
+	employee_id Int32,
+	position String,
+	is_manager Bool,
+	manager_id Int32
+)
+
+create table department (
+	department_id Int32,
+	company_id Int32,
+	name String,
+	description String
+)
+
+create table company (
+	company_id Int32,
+	name String
+)
+
+
+--------------------------------
+-- MARTS
+--------------------------------
+-- V_DEPARTMENT_STATS (department_name, managers_count, employee_count)
+
+```
