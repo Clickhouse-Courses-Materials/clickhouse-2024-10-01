@@ -16,7 +16,7 @@ covid_dwh:
       verify: False
     ci:
       type: clickhouse
-      host: clickhouse
+      host: localhost
       port: 8123
       schema: default
       threads: 4
