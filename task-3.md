@@ -13,7 +13,15 @@
 - button Int8 - код кнопки мыши
 - target String - название окна (объекта интерфейса, на котором произошло событие)
 
-Написать программу (на python, java, js, ..), отслеживающую движения мыши
+Написать программу (на python, java, js, ..), отслеживающую движения мыши (либо более простой вариант - сгенерировать случайные данные).
+
+для python:
+- события мышки собираются из окна desktop-приложения (в linux библиотека evdev: https://python-evdev.readthedocs.io/en/latest/ в windows наверное можно windll)
+- события мыши собираются со страницы в браузере - понадобится библиотека для автотестов - selenium или pyautogui (https://pyautogui.readthedocs.io/en/latest/mouse.html)
+
+также может пригодится вот эта библиотека pure python: https://github.com/boppreh/mouse/blob/master/README.md
+
+еще удобный способ - использовать OpenCV: https://pyimagesearch.com/2015/03/09/capturing-mouse-click-events-with-python-and-opencv/
 
 **Алгоритм работы:**
 - создать таблицу mouse_movements (выбрать наиболее оптимальный движок и типы колонок)
